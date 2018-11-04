@@ -1,0 +1,95 @@
+\section{Pasos previo a la instalacion de la Maquina Virtual OEL 6.6} 
+ Como primer paso vamos a crear la carpeta en la siguiente ubicación en el Disco Local E con el nombre de “VMs”;
+	\begin{center}
+		\includegraphics[width=12cm]{./Imagenes/1} 
+	\end{center}
+
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+
+ Dentro de la carpeta de “VMs” creamos una nueva carpeta con el nombre de “VHDs” donde pasaremos a copiar el archivo de “OEL 6.6”
+ 	\begin{center}
+ 		\includegraphics[width=12cm]{./Imagenes/2} 
+ 	\end{center}
+ 
+ \vspace{\baselineskip}
+ 
+ EN CASO DE NO TENER ACTIVO EL HYPER V: 
+ Ingresamos al panel de control dentro de panel de control nos dirigimos hacia la opción de “Programas” 
+  	\begin{center}
+ 	\includegraphics[width=12cm]{./Imagenes/3} 
+ 	\end{center}
+ 
+ \vspace{\baselineskip}
+ 
+ Dentro escogemos la opción de “Activar o desactivar las características de Windows”
+   	\begin{center}
+ 	\includegraphics[width=15cm]{./Imagenes/4} 
+ 	\end{center}
+ 
+ \vspace{\baselineskip}
+ 
+ Buscamos la opción en la que aparece el “Hyper – v” y le damos click y damos “Aceptar”.
+    \begin{center}
+ 	\includegraphics[width=10cm]{./Imagenes/5} 
+    \end{center}
+
+\vspace{\baselineskip}
+
+ Al dar aceptar veremos una pantalla que dirá aplicando cambios, esperamos.
+     \begin{center}
+ 	\includegraphics[width=9cm]{./Imagenes/6} 
+ 	\end{center}
+ 
+ \vspace{\baselineskip}
+ 
+ Al completar los cambios que nos pidió, nos pedirá que reiniciemos el equipo, damos clic en “Reiniciar ahora”, y esperaremos a que se encienda de nuevo nuestro pc.
+    \begin{center}
+ 	\includegraphics[width=9cm]{./Imagenes/7} 
+    \end{center}
+
+Cuando la pc inicie vamos a Windows y en el buscador escribimos “Administrador de hyper-v”, veremos que nos sale la imagen y damos clic a la imagen. 
+\begin{center}
+	\includegraphics[width=5cm]{./Imagenes/8} 
+\end{center}
+
+\vspace{\baselineskip}
+
+Nos mostrara una pantalla del administrador del hyper-v y en donde realizaremos varias acciones. 
+\begin{center}
+	\includegraphics[width=16cm]{./Imagenes/9} 
+\end{center}
+
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+
+Primero “Examinaremos” y verificaremos la carpeta en donde anteriormente copiamos el archivo de OEL 6.6 escogemos esa carpeta. 
+\\
+En este parte escogemos la segunda carpeta que hemos creado dentro de VMs, en donde ira la configuración y damos clic en “Aceptar”. 
+\begin{center}
+	\includegraphics[width=10cm]{./Imagenes/10} 
+\end{center}
+
+\newpage
+
+Nos dirigimos hacia “Administrador de conmutadores virtuales”. 
+\begin{center}
+	\includegraphics[width=17cm]{./Imagenes/11} 
+\end{center}
+
+\vspace{\baselineskip}
+
+Nos mostrarà esta ventana nos preguntara que tenemos que elegir cual conmutador escoger, escogemos el conmutador “Interno”. Y damos clic en “Crear conmutador virtual”.
+\begin{center}
+	\includegraphics[width=14cm]{./Imagenes/12} 
+\end{center} 
+
+\vspace{\baselineskip}
+
+Al crear el conmutador virtual nos pedirá que ingresemos un nombre el que deseemos, en este caso le pondremos de nombre “AdaptadorOracle”, en el tipo de conexión verificaremos que este en “Red interna” y damos clic en “Aceptar”. 
+	\begin{center}
+		\includegraphics[width=12cm]{./Imagenes/13} 
+	\end{center} 
+ 
+ 
+

@@ -1,0 +1,5 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Pasos previo a la instalacion de la Maquina Virtual OEL 6.6}{1}
+\contentsline {section}{\numberline {2}Instalaci\IeC {\'o}n de la Maquina Virtual OEL 6.6}{7}
+\contentsline {section}{\numberline {3}Desarrollo de la Actividad en la M.V.}{14}
+\contentsline {section}{\numberline {4}Instalaci\IeC {\'o}n de Oracle Server}{27}
