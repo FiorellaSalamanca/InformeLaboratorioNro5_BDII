@@ -2,15 +2,35 @@
 \vspace{\baselineskip}
 5.1 Los valores introducidos al archivo sysctl.conf ¿que representan?
 
+\begin{center}
+		\includegraphics[width=5cm]{./Imagenes/1-C} 
+	\end{center} 
+
 \vspace{\baselineskip}
 
-{\bfseries fs.suid\_dumpable}
-\\
-\\
+El fichero de configuración-etc-sysctl.conf se utiliza para establecer algunos parámetros del kernel y que estos se mantengan  entre sucesivos arranques del sistema, es decir, que los cambios sean persistentes. Esto es equivalente a cambiar valores en los archivos del directorio virtual -proc-sys, sólo que con este último método los cambios se pierden al apagar el sistema.
+Por defecto, el sistema previene setuidy los setgid programas, los programas que han cambiado las credenciales y los programas cuyos binarios no tienen permiso de lectura del núcleo de volcado. Para asegurarse de que la configuración se registra de forma permanente, agregue las siguientes líneas a -etc-sysctl.conf:
 
-{\bfseries fs.aio-max-nr}
-\\
-\\
+\begin{center}
+		\includegraphics[width=13cm]{./Imagenes/2-C} 
+	\end{center} 
+
+{\bfseries fs.aio\_max\_nr}
+
+\begin{center}
+		\includegraphics[width=5cm]{./Imagenes/3-C} 
+	\end{center} 
+
+ El kernel de Linux proporciona la función de E-S sin bloqueo asíncrono (AIO) que permite que un proceso inicie varias operaciones de E-S simultáneamente sin tener que esperar a que se complete ninguna de ellas. Esto ayuda a mejorar el rendimiento de las  aplicaciones que pueden solapar el procesamiento y la E-S.
+El rendimiento puede ajustarse utilizando el -proc-sys-fs-aio-max-nrarchivo virtual en el sistema de archivos proc. El aio-max-nrparámetro determina el número máximo de solicitudes concurrentes permitidas.
+Otro parámetro, -proc-sys-fs-aio-nrproporciona el número actual de solicitudes asíncronas en todo el sistema.
+Veritas recomienda que establezca el aio-max-nrvalor en 1048576. Esto ayuda a HyperScale a tener un rendimiento óptimo, en un entorno que involucra grandes cargas de trabajo de E-S.
+
+Realice los siguientes pasos en todos los nodos de cómputo y datos de HyperScale:
+1.	Para establecer el aio-max-nrvalor, agregue la siguiente línea al -etc-sysctl.confarchivo:
+ fs.aio-max-nr = 1048576
+2.	Para activar la nueva configuración, ejecute el siguiente comando:
+ -sysctl p etc-sysctl.conf
 
 {\bfseries fs.file-max}
 \\
@@ -33,20 +53,33 @@
 
 {\bfseries  net.ipv4.ip\_local\_port\_range}
 \\
-\\Define el rango de puertos locales que utilizan TCP y UDP para elegir el puerto local. El primer número es el primero, el segundo el último número de puerto local. 
+\\Define el rango de puertos locales que utilizan TCP y UDP para elegir el puerto local. El primer número es el primero, el segundo el último número de puerto local. \\
 \\Si es posible, es mejor que estos números tengan una paridad diferente, es decir, uno par y uno impar. 
 \\
+	\begin{center}
+		\includegraphics[width=17cm]{./Imagenes/c} 
+	\end{center} 
 
 {\bfseries  net.core.rmem\_default}
 \\
-\\Define el rango de puertos locales que utilizan TCP y UDP para elegir el puerto local. El primer número es el primero, el segundo el último número de puerto local. 
+\\Define el rango de puertos locales que utilizan TCP y UDP para elegir el puerto local. El primer número es el primero, el segundo el último número de puerto local. \\
 \\Si es posible, es mejor que estos números tengan una paridad diferente, es decir, uno par y uno impar. 
 \\
+	\begin{center}
+		\includegraphics[width=17cm]{./Imagenes/t} 
+	\end{center} 
 
 {\bfseries  net.core.rmem\_max}
 \\
 \\Esto establece el tamaño máximo del búfer de recepción del sistema operativo para todos los tipos de conexiones.
 \\
+\\La configuración de net.core.rmem\_max define el tamaño máximo del búfer de socket de recepción en bytes.\\
+\\
+\\Hay algunas configuraciones diferentes que parecen ser muy similares. Puede ver que en Ubuntu 15.04 (3.18.0-13-generic) el valor predeterminado para net.core.rmem\_max es 212992. En este caso, los valores predeterminado y máximo son los mismos. Elevar este valor a un valor mayor aumentará el tamaño del búfer, pero esto puede tener efectos desagradables en términos de "acumulación de búfer". \\
+	\begin{center}
+		\includegraphics[width=17cm]{./Imagenes/s} 
+	\end{center} 
+
 
 {\bfseries  net.core.wmem\_default}
 \\
@@ -57,22 +90,63 @@
 \\
 \\Esto establece el tamaño del búfer de envío del sistema operativo predeterminado para todos los tipos de conexiones.
 \\
-
-\newpage
+\\La configuración de net.core.wmem\_max define el tamaño máximo del búfer de socket de envío en bytes.
+\\
+\\
+Puede ver que en Ubuntu 15.04 (3.18.0-13-generic) el valor predeterminado para net.core.wmem\_max es 212992, que es del mismo tamaño que rmem\_max. Si aumenta esto a un valor mayor, aumentará el tamaño del búfer de envío.\\
+\\
+	\begin{center}
+		\includegraphics[width=17cm]{./Imagenes/p} 
+	\end{center} 
 
 5.2 ¿Con qué usuario(s) puedo conectarme al servidor a través del Administrador
 Empresarial?
 	\begin{center}
-		\includegraphics[width=13cm]{./Imagenes/users} 
+		\includegraphics[width=13cm]{./Imagenes/users-oracle} 
 	\end{center} 
+
+	Los datos del login que se han utilizado para ingresar al Administrador Empresarial con:
+
+	\begin{center}
+		\includegraphics[width=15cm]{./Imagenes/94} 
+	\end{center}
 
 \vspace{\baselineskip}
 
-5.3 Capture una imagen de pantalla del navegador con el Administrador Empresarial, con el nombre de su servidor e iniciada la sesión del usuario SYS.
-	\begin{center}
-		\includegraphics[width=13.2cm]{./Imagenes/92} 
-	\end{center}
-	
-	\begin{center}
-		\includegraphics[width=13.2cm]{./Imagenes/93} 
-	\end{center}
+5.3 Capture una imagen de pantalla del navegador con el Administrador Empresarial, con el nombre de su servidor e iniciada la sesión del usuario SYS.\\
+\\
+\\Para verificar de que la instalación ha sido exitosa, iniciar un navegador de Internet (Mozilla u otro similar), e introducir la dirección electrónica. Si todo es correcto aparecerá la interfaz de inicio de sesión de la herramienta Enterprise Manager (Administrador Empresarial) de Oracle.\\
+\begin{center}
+	\includegraphics[width=16cm]{./Imagenes/91} 
+\end{center}
+
+Pero, si aparece la siguiente advertencia. para lo cual debemos ir a la Opcion I Understand the Risks
+\begin{center}
+	\includegraphics[width=15cm]{./Imagenes/88} 
+\end{center}
+
+Lo cual nos desglosara un comunicado, el cual presionamos el boton Add Exception
+\begin{center}
+	\includegraphics[width=15cm]{./Imagenes/89} 
+\end{center}
+
+Nos aparecera una nueva ventana de Advertencia donde presionaremos Confirm Security Exception
+\begin{center}
+	\includegraphics[width=10cm]{./Imagenes/90} 
+\end{center}
+
+Ya al culminar estos pasos podremos visualizar nuestra pagina de Login, donde podremos colocar nuestros datos
+\begin{center}
+	\includegraphics[width=15cm]{./Imagenes/92} 
+\end{center}
+
+Y cuando ingresemos nos aparecera la siguiente pagina de inicio
+\begin{center}
+	\includegraphics[width=15cm]{./Imagenes/93} 
+\end{center}
+
+Para no olvidarnos, es bueno mantener anotado la Url y los datos del Login.
+\begin{center}
+	\includegraphics[width=15cm]{./Imagenes/94} 
+\end{center}
+
