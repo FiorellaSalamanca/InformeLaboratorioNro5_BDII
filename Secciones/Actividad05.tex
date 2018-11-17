@@ -31,11 +31,27 @@ Realice los siguientes pasos en todos los nodos de cómputo y datos de HyperScal
  fs.aio-max-nr = 1048576
 2.	Para activar la nueva configuración, ejecute el siguiente comando:
  -sysctl p etc-sysctl.conf
+ 
+\newpage
 
-{\bfseries fs.file-max}
-\\
-\\
+{\bfseries fs.file-max}\\
 
+Este es el máximo de descriptores de archivos (FD) implementado en un nivel de kernel, que no puede ser superado por todos los procesos sin aumentar. El ulimit se aplica en un nivel de proceso, que puede ser menor que el máximo de archivo. No hay riesgo de impacto en el rendimiento al aumentar el máximo de archivos. Las distribuciones modernas tienen el máximo establecido de FD bastante alto, mientras que en el pasado requería la re-compilación y modificación del kernel para aumentar más allá de 1024. \\ \\
+No aumentaría en todo el sistema a menos que tenga una necesidad técnica. La configuración por proceso a menudo necesita ajustarse para servir a un demonio en particular, ya sea una base de datos o un servidor web. 
+Si elimina el límite por completo, ese daemon podría agotar todos los recursos del sistema disponibles; lo que significa que no podrá solucionar el problema excepto si presiona el botón de reinicio o el ciclo de encendido. Por supuesto, es probable que cualquiera de ellos cause la corrupción de los archivos abiertos.
+Establecer de forma persistente el límite de descriptores de fichero (/etc/sysctl.conf) a manejar del kernel.
+	\begin{center}
+		\includegraphics[width=8cm]{./Imagenes/fsFileE1} 
+	\end{center}
+Si se modifica el valor, se deben guardar los cambios y comprobar que el valor es el esperado.
+	\begin{center}
+		\includegraphics[width=8cm]{./Imagenes/fsFileE2} 
+	\end{center}
+Se puede consultar el valor en el fichero /proc/sys/fs/file-max y /proc/sys/fs/file-nr.
+	\begin{center}
+		\includegraphics[width=8cm]{./Imagenes/fsFileE3} 
+	\end{center}
+El fichero file-nr muestra tres parámetros. 3936 Descriptores de ficheros asignados. 0 Descriptores de ficheros que no están en uso pero fueron asignados. 707452 Límite de descriptores de ficheros del sistema del sistema (/proc/sys/fs/file-max).\\ \\
 {\bfseries kernel.shmmni}
 \\
 \\
